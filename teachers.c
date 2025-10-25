@@ -1,45 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "authentication.c"
-#include "student.c"
-#include "attendanceTeacher.c"
-#include "attendanceStudent.c"
+#include "attendance.h"
+#include "authentication.h"
 
 
-// Teachers Module
-
-void displayMessageTeacher()
-{
-  displayName();
-}
-
-int teachersChoice(struct node *teacherhead)
+void teachersChoice()
 {
   int choice;
-  while (1)
+  while(1)
   {
-    printf("1: Generate QR\n");
-    printf("2: View Attendance\n");
-    printf("3: View Attendance Summary\n");
+    printf("1:Mark Attendance\n");
+    printf("2:View Attendance\n");
+    printf("3:View Attendance Summary\n");
     printf("4:LogOut\n");
     printf("Enter your Choice:");
     scanf("%d", &choice);
-
     switch (choice)
     {
     case 1:
-      generateQR();
-      break;
+    addAttendance();
+    break;
     case 2:
-      displayAttendance(teacherhead);
+      displayAttendance();
       break;
     case 3:
-      viewAttendanceSummary(teacherhead);
+      viewAttendanceSummary();
       break;
     case 4:
       printf("Logging out..\n");
-      return 0;
+      return;
     default:
       printf("Invalid Choice!\n");
       break;
