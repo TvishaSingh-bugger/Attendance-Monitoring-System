@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "teachers.c"
-#include "student.c"
-#include "attendanceTeacher.c"
-#include "attendanceStudent.c"
+#include "attendance.h"
+
 
 // User Authentication
 
@@ -15,7 +13,7 @@ struct User
   char passWord[30];
   char userCategory[30]; // student or Teacher
 };
-char enteredUser[30];
+
 void userAuthentication()
 {
   FILE *f1;
@@ -69,11 +67,10 @@ int login()
   printf("Enter Your Category(Student/Teacher):");
   scanf("%s", userCategory);
 
-  while (fscanf(f2, "%s %d %s %s\n", u.name, &u.userId, u.passWord, u.userCategory) != EOF)
+  while (fscanf(f2, "%s %d %s %s\n", u.name, &u.userId, u.passWord,u.userCategory) != EOF)
   {
     if (UserId == u.userId && strcmp(passWord, u.passWord) == 0)
     {
-      strcpy(enteredUser,u.name);
       printf("WELCOME!\n");
       fclose(f2);
       return 0;
@@ -82,9 +79,4 @@ int login()
   fclose(f2);
   printf("Invalid Credentials!\n");
   return 0;
-}
-
-void displayName()
-{
-  printf("Welcome %s",enteredUser);
 }
